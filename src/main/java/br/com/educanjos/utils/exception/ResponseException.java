@@ -1,6 +1,5 @@
 package br.com.educanjos.utils.exception;
 
-import br.com.educanjos.utils.config.MessageConfig;
 import lombok.Getter;
 
 @Getter

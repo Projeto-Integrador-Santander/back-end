@@ -3,10 +3,8 @@ package br.com.educanjos.models.entities;
 import br.com.educanjos.models.enums.StatusPerfil;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -21,6 +19,7 @@ public class Perfil {
 
     private String sobrenome;
 
+    @Column(unique = true)
     private String cpf;
 
     private String telefone;

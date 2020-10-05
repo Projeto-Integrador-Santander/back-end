@@ -18,7 +18,7 @@ public class ValidationsUtil {
 
     public static void verificaIsEmpty(List<?> list, @NonNull String codErro){
         if (Objects.isNull(list) || list.isEmpty())
-            throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
+            throw new ExceptionEducanjosApi(HttpStatus.NO_CONTENT, codErro);
     }
 
     public static void verificaIsNull(Object object, @NonNull String codErro){

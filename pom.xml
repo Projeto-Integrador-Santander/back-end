@@ -46,7 +46,6 @@
             <groupId>com.ibm.db2</groupId>
             <artifactId>jcc</artifactId>
             <scope>runtime</scope>
-            <!--                    <version>11.5.0.0</version>-->
         </dependency>
 
         <dependency>

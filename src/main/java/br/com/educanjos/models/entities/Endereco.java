@@ -27,4 +27,8 @@ public class Endereco {
     private String cidade;
 
     private String uf;
+
+    public Endereco(Long id) {
+        this.id = id;
+    }
 }

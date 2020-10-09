@@ -20,4 +20,7 @@ public class Login {
 
     private String senha;
 
+    public Login(Long id) {
+        this.id = id;
+    }
 }

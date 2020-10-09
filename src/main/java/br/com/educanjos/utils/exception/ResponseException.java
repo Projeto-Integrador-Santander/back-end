@@ -9,7 +9,7 @@ public class ResponseException {
 
     public ResponseException(ExceptionEducanjosApi exception) {
         this.codigo = exception.getCodErro();
-        this.mensagem = MessageConfig.getMessage(exception.getCodErro());
+        this.mensagem = exception.getMessage();
     }
 
 }

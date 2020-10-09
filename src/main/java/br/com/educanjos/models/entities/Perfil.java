@@ -19,7 +19,6 @@ public class Perfil {
 
     private String sobrenome;
 
-    @Column(unique = true)
     private String cpf;
 
     private String telefone;
@@ -32,5 +31,9 @@ public class Perfil {
 
     public Perfil(){
         this.status = StatusPerfil.ATIVO;
+    }
+
+    public Perfil(Long id){
+        this.id = id;
     }
 }

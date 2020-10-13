@@ -15,10 +15,10 @@ public class ProfessorMateria {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne //(cascade = CascadeType.PERSIST)
     private Materia materia;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne //(cascade = CascadeType.PERSIST)
     private Pessoa professor;
 
 

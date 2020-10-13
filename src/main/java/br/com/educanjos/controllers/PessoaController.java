@@ -1,22 +1,19 @@
 package br.com.educanjos.controllers;
 
-import java.util.List;
-
 import br.com.educanjos.facades.PerfilFacade;
+import br.com.educanjos.facades.PessoaFacade;
 import br.com.educanjos.models.dto.PessoaEntrada;
-import br.com.educanjos.models.entities.Perfil;
-import br.com.educanjos.models.enums.TipoCadastroPessoa;
+import br.com.educanjos.models.entities.Pessoa;
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.sun.istack.NotNull;
-import br.com.educanjos.facades.PessoaFacade;
-import br.com.educanjos.models.entities.Pessoa;
-import lombok.AllArgsConstructor;
+import java.util.List;
 
 @RestController
-@RequestMapping("Pessoa/v1")
+@RequestMapping("pessoa/v1")
 @Validated
 @AllArgsConstructor
 public class PessoaController {
@@ -50,7 +47,7 @@ public class PessoaController {
     @PatchMapping("/inativa/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void inativa(@PathVariable("id") @NotNull Long id) {
-        perfilFacade.deletePerfil(id);
+        //perfilFacade.deletePerfil(id);
         facade.deletePessoa(id);
     }
 

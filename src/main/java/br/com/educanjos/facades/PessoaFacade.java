@@ -1,18 +1,20 @@
 package br.com.educanjos.facades;
 
-import static br.com.educanjos.utils.ValidationsUtil.verificaIsEmpty;
-import static br.com.educanjos.utils.ValidationsUtil.verificaIsPresente;
-
 import java.util.List;
 import java.util.Optional;
 
 import br.com.educanjos.models.dto.PessoaEntrada;
+import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import br.com.educanjos.models.mapper.Mapper;
+import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.repositories.PessoaRepository;
+
+import static br.com.educanjos.utils.ValidationsUtil.*;
 
 @Service
 public class PessoaFacade {
@@ -42,5 +44,12 @@ public class PessoaFacade {
         verificaIsPresente(entity, id.toString());
         repository.deleteById(id);
     }
-    
+
+    public void verificaExistencia(Long id){
+	    Optional<Pessoa> pessoa = repository.findById(id);
+	    verificaIsPresente(pessoa, id.toString() + " em professor");
+	    if (!TipoCadastroPessoa.PROFESSOR.equals(pessoa.get().getTipoCadastro())){
+            throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, "VALIDACAO-4");
+        }
+    }
 }

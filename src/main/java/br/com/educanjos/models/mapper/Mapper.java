@@ -9,7 +9,7 @@ public class Mapper {
 
     public static Pessoa entradaToEntity(@NotNull PessoaEntrada entrada) {
         Pessoa pessoa = new Pessoa();
-        pessoa.setEndereco(new Endereco(entrada.getEndereco()));
+        //pessoa.setEndereco(new Endereco(entrada.getEndereco()));
         pessoa.setLogin(new Login(entrada.getLogin()));
         pessoa.setPerfil(new Perfil(entrada.getPerfil()));
         pessoa.setTipoCadastro(TipoCadastroPessoa.get(entrada.getTipoCadastro()));

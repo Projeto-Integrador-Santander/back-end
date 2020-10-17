@@ -21,13 +21,13 @@ public class Pessoa {
 
     private TipoCadastroPessoa tipoCadastro;
 
-    @OneToOne //(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Login login;
 
-    @ManyToMany //(cascade = CascadeType.PERSIST)
+    @ManyToMany
     private List<Materia> materias;
 
-    @OneToOne //(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Perfil perfil;
 
     public Pessoa(Long id) {

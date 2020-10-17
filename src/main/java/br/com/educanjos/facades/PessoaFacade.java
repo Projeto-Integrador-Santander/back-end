@@ -22,8 +22,8 @@ public class PessoaFacade {
 	@Autowired
 	private PessoaRepository repository;
 
-	public Pessoa newPessoa(PessoaEntrada entrada){
-        Pessoa pessoa = Mapper.entradaToEntity(entrada);
+	public Pessoa newPessoa(Pessoa pessoa, String tipo){
+        pessoa.setTipoCadastro(TipoCadastroPessoa.get(tipo));
 		return repository.save(pessoa);
 	}
 

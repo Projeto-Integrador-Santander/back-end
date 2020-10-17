@@ -4,6 +4,7 @@ import br.com.educanjos.facades.PerfilFacade;
 import br.com.educanjos.facades.PessoaFacade;
 import br.com.educanjos.models.dto.PessoaEntrada;
 import br.com.educanjos.models.entities.Pessoa;
+import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,12 @@ import java.util.List;
 public class PessoaController {
 	@Autowired
     private PessoaFacade facade;
-    @Autowired
-    private PerfilFacade perfilFacade;
 
     @PostMapping("{tipo}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa newPessoa(@PathVariable("tipo") String tipo,
-                            @RequestParam("id_perfil") Long idPerfil,
-                            @RequestParam("id_login") Long idLogin,
-                            @RequestParam("id_endereco") Long idEndereco) {
-        PessoaEntrada Pessoa = new PessoaEntrada(tipo, idLogin, idEndereco, idPerfil);
-        return facade.newPessoa(Pessoa);
+    public Pessoa newPessoa(@RequestBody Pessoa pessoa,
+                            @PathVariable("tipo") String tipo) {
+        return facade.newPessoa(pessoa, tipo);
     }
 
     @GetMapping("/{id}")
@@ -47,7 +43,6 @@ public class PessoaController {
     @PatchMapping("/inativa/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void inativa(@PathVariable("id") @NotNull Long id) {
-        //perfilFacade.deletePerfil(id);
         facade.deletePessoa(id);
     }
 

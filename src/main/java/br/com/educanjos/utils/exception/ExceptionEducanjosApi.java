@@ -1,9 +1,9 @@
 package br.com.educanjos.utils.exception;
 
+import br.com.educanjos.utils.config.MessageConfig;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.Objects;
 
 @Getter
 public class ExceptionEducanjosApi extends ResponseStatusException {

@@ -4,6 +4,9 @@ import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,8 +24,8 @@ public class Pessoa {
     @OneToOne //(cascade = CascadeType.PERSIST)
     private Login login;
 
-    @OneToOne //(cascade = CascadeType.PERSIST)
-    private Endereco endereco;
+    @ManyToMany //(cascade = CascadeType.PERSIST)
+    private List<Materia> materias;
 
     @OneToOne //(cascade = CascadeType.PERSIST)
     private Perfil perfil;

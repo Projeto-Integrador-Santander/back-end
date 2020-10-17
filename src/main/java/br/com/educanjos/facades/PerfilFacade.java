@@ -18,27 +18,27 @@ public class PerfilFacade {
         return repository.save(perfil);
     }
 
-    public Perfil getPerfilById(Long idPerfil){
-        Optional<Perfil> entity = repository.findById(idPerfil);
-        verificaIsPresente(entity, "PERFIL-1");
+    public Perfil getPerfilById(Long id){
+        Optional<Perfil> entity = repository.findById(id);
+        verificaIsPresente(entity, id.toString());
         return entity.get();
     }
 
     public List<Perfil> getAllPerfil(){
         List<Perfil> entities = repository.findAll();
-        verificaIsEmpty(entities, "PERFIL-2");
+        verificaIsEmpty(entities);
         return entities;
     }
 
     public void deletePerfil(Long id){
         Perfil entity = getPerfilById(id);
-        verificaIsInactive(entity.getStatus().toString(), "PERFIL-3");
+        verificaIsInactive(entity.getStatus().toString());
         repository.updateInactivePerfil(id);
     }
 
     private void findByCPF(String cpf){
         Perfil entity = repository.findByCpf(cpf);
-        verificaIsNotNull(entity, "PERFIL-0");
+        verificaIsNotNull(entity, "VALIDACAO-3", cpf);
     }
 
 

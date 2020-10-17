@@ -1,6 +1,7 @@
 package br.com.educanjos.models.entities;
 
 import br.com.educanjos.models.enums.StatusPerfil;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,22 +16,31 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @JsonProperty("nome")
     private String nome;
 
+    @JsonProperty("sobrenome")
     private String sobrenome;
 
-    @Column(unique = true)
+    @JsonProperty("cpf")
     private String cpf;
 
+    @JsonProperty("numero_whatsapp")
     private String telefone;
 
+    @JsonProperty("url_foto")
     private String urlFoto;
 
+    @JsonProperty("sobre")
     private String sobre;
 
     private StatusPerfil status;
 
     public Perfil(){
         this.status = StatusPerfil.ATIVO;
+    }
+
+    public Perfil(Long id){
+        this.id = id;
     }
 }

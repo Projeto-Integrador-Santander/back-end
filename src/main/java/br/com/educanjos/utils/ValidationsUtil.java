@@ -11,14 +11,14 @@ import java.util.Optional;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ValidationsUtil {
-    public static void verificaIsPresente(@NonNull Optional<?> optional, @NonNull String codErro){
+    public static void verificaIsPresente(@NonNull Optional<?> optional, @NonNull String id){
         if (!optional.isPresent())
-            throw new ExceptionEducanjosApi(HttpStatus.NOT_FOUND, codErro);
+            throw new ExceptionEducanjosApi(HttpStatus.NOT_FOUND, "VALIDACAO-1", id);
     }
 
-    public static void verificaIsEmpty(List<?> list, @NonNull String codErro){
+    public static void verificaIsEmpty(List<?> list){
         if (Objects.isNull(list) || list.isEmpty())
-            throw new ExceptionEducanjosApi(HttpStatus.NO_CONTENT, codErro);
+            throw new ExceptionEducanjosApi(HttpStatus.NO_CONTENT, "VALIDACAO-2");
     }
 
     public static void verificaIsNull(Object object, @NonNull String codErro){
@@ -26,14 +26,18 @@ public class ValidationsUtil {
             throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
     }
 
-    public static void verificaIsNotNull(Object object, @NonNull String codErro){
+    public static void verificaIsNotNull(Object object, @NonNull String codErro, String param){
         if (!Objects.isNull(object))
-            throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
+            if (Objects.isNull(param)){
+                throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
+            }else{
+                throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro, param);
+            }
     }
 
-    public static void verificaIsInactive(@NonNull String status, @NonNull String codErro){
+    public static void verificaIsInactive(@NonNull String status){
         if (status.equals("INATIVO"))
-            throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, codErro);
+            throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, "VALIDACAO-3");
     }
 
 }

@@ -36,4 +36,9 @@ public class LoginFacade {
         return entities;
     }
 
+    public void atualizaSenha(String email, String senha){
+        Login login = getLoginByEmail(email);
+        login.setSenha(senha);
+        repository.save(login);
+    }
 }

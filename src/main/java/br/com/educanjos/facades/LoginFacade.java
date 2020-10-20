@@ -15,7 +15,16 @@ public class LoginFacade {
     private LoginRepository repository;
 
     public Login newLogin(Login Login) {
-        return repository.save(Login);
+    	
+    	Login entity = repository.findByEmail(Login.getEmail());
+    	
+    	if (entity == null || entity.getId() == 0) {
+    		return repository.save(Login);
+    	} else {
+    		// Solta um erro
+    		return null;
+    	}
+    	
     }
 
     public Login getLoginById(Long id) {
@@ -29,13 +38,24 @@ public class LoginFacade {
         verificaIsNotNull(entity, "VALIDACAO-5", email);
         return entity;
     }
+    
+    public Login getLoginByEmailSenha(String email, String senha) {
+        Login entity = repository.findByEmail(email);
+        verificaIsNotNull(entity, "VALIDACAO-5", email);
+        
+        if (!entity.getSenha().equals(senha)) {
+        	return null; 
+        }
+        
+        return entity;
+    }
 
     public List<Login> getAllLogin() {
         List<Login> entities = repository.findAll();
         verificaIsEmpty(entities);
         return entities;
     }
-
+    
     public void atualizaSenha(String email, String senha){
         Login login = getLoginByEmail(email);
         login.setSenha(senha);

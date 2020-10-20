@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import br.com.educanjos.models.entities.Login;
+import br.com.educanjos.models.entities.Materia;
+import br.com.educanjos.models.entities.Perfil;
 import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.repositories.PessoaRepository;
 
@@ -26,7 +29,26 @@ public class PessoaFacade {
         pessoa.setTipoCadastro(TipoCadastroPessoa.get(tipo));
 		return repository.save(pessoa);
 	}
-
+	
+	public Pessoa editPessoa(Pessoa pessoa, String tipo){
+		Optional<Pessoa> entity = repository.findById(pessoa.getId());
+		
+		Pessoa pessoaBase = entity.get();
+		Perfil perfilBase = pessoaBase.getPerfil();
+		Perfil perfil = pessoa.getPerfil();
+		perfilBase.setNome(perfil.getNome());
+		perfilBase.setCpf(perfil.getCpf());
+		perfilBase.setSobre(perfil.getSobre());
+		perfilBase.setSobrenome(perfil.getSobrenome());
+		perfilBase.setTelefone(perfil.getTelefone());
+		perfilBase.setUrlFoto(perfil.getUrlFoto());
+		pessoaBase.setMaterias(pessoa.getMaterias());
+		Login login = pessoaBase.getLogin();
+		login.setSenha(pessoa.getLogin().getSenha());
+		
+		return repository.save(pessoaBase);
+	}
+	
     public Pessoa getPessoaById(Long id){
         Optional<Pessoa> entity = repository.findById(id);
         verificaIsPresente(entity, id.toString());

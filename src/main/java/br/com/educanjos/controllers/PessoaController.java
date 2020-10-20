@@ -27,6 +27,13 @@ public class PessoaController {
                             @PathVariable("tipo") String tipo) {
         return facade.newPessoa(pessoa, tipo);
     }
+    
+    @PutMapping("{tipo}")
+    @ResponseStatus(HttpStatus.OK)
+    public Pessoa editPessoa(@RequestBody Pessoa pessoa,
+                            @PathVariable("tipo") String tipo) {
+        return facade.editPessoa(pessoa, tipo);
+    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

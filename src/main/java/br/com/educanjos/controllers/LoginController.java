@@ -38,6 +38,12 @@ public class LoginController {
     public Login getByEmail(@PathVariable("email") @NotNull String email) {
         return facade.getLoginByEmail(email);
     }
+    
+    @GetMapping("/email/{email}/{senha}")
+    @ResponseStatus(HttpStatus.OK)
+    public Login getByEmailSenha(@PathVariable("email") @NotNull String email, @PathVariable("senha") @NotNull String senha) {
+        return facade.getLoginByEmailSenha(email, senha);
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

@@ -18,7 +18,7 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+   
     private TipoCadastroPessoa tipoCadastro;
 
     @OneToOne(cascade = CascadeType.PERSIST)

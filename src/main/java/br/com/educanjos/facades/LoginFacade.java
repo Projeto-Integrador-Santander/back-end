@@ -1,10 +1,14 @@
 package br.com.educanjos.facades;
 
 import br.com.educanjos.models.entities.Login;
+import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.repositories.LoginRepository;
+import br.com.educanjos.repositories.PessoaRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import static br.com.educanjos.utils.ValidationsUtil.*;
 
@@ -40,14 +44,7 @@ public class LoginFacade {
     }
     
     public Login getLoginByEmailSenha(String email, String senha) {
-        Login entity = repository.findByEmail(email);
-        verificaIsNotNull(entity, "VALIDACAO-5", email);
-        
-        if (!entity.getSenha().equals(senha)) {
-        	return null; 
-        }
-        
-        return entity;
+        return repository.findByEmailAndSenha(email, senha);
     }
 
     public List<Login> getAllLogin() {

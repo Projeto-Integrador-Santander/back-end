@@ -40,6 +40,12 @@ public class PessoaController {
     public Pessoa getById(@PathVariable("id") @NotNull Long id) {
         return facade.getPessoaById(id);
     }
+    
+    @GetMapping("login/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Pessoa getByIdLogin(@PathVariable("id") @NotNull Long id) {
+        return facade.getPessoaByIdLogin(id);
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

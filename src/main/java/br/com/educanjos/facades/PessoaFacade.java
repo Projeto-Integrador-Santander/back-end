@@ -54,6 +54,14 @@ public class PessoaFacade {
         verificaIsPresente(entity, id.toString());
         return entity.get();
     }
+    
+    public Pessoa getPessoaByIdLogin(Long id){
+        Pessoa entity = repository.findByLoginId(id);
+        verificaIsNotNull(entity, "VERIFICA", id.toString());
+        return entity;
+    }
+    
+    
 
     public List<Pessoa> getAllPessoa(){
         List<Pessoa> entities = repository.findAll();

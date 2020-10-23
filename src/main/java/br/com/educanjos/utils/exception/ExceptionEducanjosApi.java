@@ -8,7 +8,9 @@ import org.springframework.web.server.ResponseStatusException;
 @Getter
 public class ExceptionEducanjosApi extends ResponseStatusException {
 
-    private String codErro;
+	private static final long serialVersionUID = 1L;
+
+	private String codErro;
 
     private String message;
 

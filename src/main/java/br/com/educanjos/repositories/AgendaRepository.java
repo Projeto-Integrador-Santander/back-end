@@ -1,11 +1,11 @@
 package br.com.educanjos.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import br.com.educanjos.models.entities.Pessoa;
 import org.springframework.stereotype.Repository;
 
+import br.com.educanjos.models.entities.Agenda;
+
 @Repository
-public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
-	Pessoa findByLoginId(Long id);
+public interface AgendaRepository extends JpaRepository<Agenda, Long>{
+
 }

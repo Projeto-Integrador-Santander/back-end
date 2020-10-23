@@ -1,6 +1,5 @@
 package br.com.educanjos.models.entities;
 
-import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import lombok.Getter;
 import lombok.Setter;
 

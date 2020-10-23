@@ -29,7 +29,7 @@ public class Pessoa {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Perfil perfil;
-
+    
     public Pessoa(Long id) {
         this.id = id;
     }

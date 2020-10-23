@@ -3,16 +3,13 @@ package br.com.educanjos.facades;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.educanjos.models.dto.PessoaEntrada;
 import br.com.educanjos.models.enums.TipoCadastroPessoa;
-import br.com.educanjos.models.mapper.Mapper;
 import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.educanjos.models.entities.Login;
-import br.com.educanjos.models.entities.Materia;
 import br.com.educanjos.models.entities.Perfil;
 import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.repositories.PessoaRepository;

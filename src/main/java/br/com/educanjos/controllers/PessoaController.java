@@ -1,10 +1,7 @@
 package br.com.educanjos.controllers;
 
-import br.com.educanjos.facades.PerfilFacade;
 import br.com.educanjos.facades.PessoaFacade;
-import br.com.educanjos.models.dto.PessoaEntrada;
 import br.com.educanjos.models.entities.Pessoa;
-import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

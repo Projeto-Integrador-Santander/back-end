@@ -1,7 +1,6 @@
 package br.com.educanjos.controllers;
 
 import br.com.educanjos.facades.LoginFacade;
-import br.com.educanjos.facades.LoginFacade;
 import br.com.educanjos.models.entities.Login;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;

@@ -2,7 +2,6 @@ package br.com.educanjos.models.enums;
 
 import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
 import lombok.Getter;
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.http.HttpStatus;
 
 public enum TipoCadastroPessoa {

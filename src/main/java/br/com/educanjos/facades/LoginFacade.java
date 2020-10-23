@@ -1,14 +1,11 @@
 package br.com.educanjos.facades;
 
 import br.com.educanjos.models.entities.Login;
-import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.repositories.LoginRepository;
-import br.com.educanjos.repositories.PessoaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import static br.com.educanjos.utils.ValidationsUtil.*;
 

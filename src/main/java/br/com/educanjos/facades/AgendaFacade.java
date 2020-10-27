@@ -9,33 +9,33 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.educanjos.models.entities.Agenda;
-import br.com.educanjos.repositories.AgendaRepository;
+import br.com.educanjos.models.entities.PessoaAgenda;
+import br.com.educanjos.repositories.PessoaAgendaRepository;
 
 @Service
 public class AgendaFacade {
 	
 	@Autowired
-    private AgendaRepository repository;
+    private PessoaAgendaRepository repository;
 
-    public Agenda newAgenda(Agenda Agenda){
+    public PessoaAgenda newAgenda(PessoaAgenda Agenda){
         return repository.save(Agenda);
     }
 
-    public Agenda getAgendaById(Long id){
-        Optional<Agenda> entity = repository.findById(id);
+    public PessoaAgenda getAgendaById(Long id){
+        Optional<PessoaAgenda> entity = repository.findById(id);
         verificaIsPresente(entity, id.toString());
         return entity.get();
     }
 
-    public List<Agenda> getAllAgenda(){
-        List<Agenda> entities = repository.findAll();
+    public List<PessoaAgenda> getAllAgenda(){
+        List<PessoaAgenda> entities = repository.findAll();
         verificaIsEmpty(entities);
         return entities;
     }
 
-    public void atualizaAgenda(Long id, Agenda agenda){
-    	Agenda entity = getAgendaById(id);
+    public void atualizaAgenda(Long id, PessoaAgenda agenda){
+    	PessoaAgenda entity = getAgendaById(id);
         agenda.setId(entity.getId());
         repository.save(entity);
     }

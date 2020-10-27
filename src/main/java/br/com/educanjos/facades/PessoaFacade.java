@@ -39,7 +39,7 @@ public class PessoaFacade {
 		perfilBase.setSobrenome(perfil.getSobrenome());
 		perfilBase.setTelefone(perfil.getTelefone());
 		perfilBase.setUrlFoto(perfil.getUrlFoto());
-		pessoaBase.setMaterias(pessoa.getMaterias());
+		pessoaBase.setMateria(pessoa.getMateria());
 		Login login = pessoaBase.getLogin();
 		login.setSenha(pessoa.getLogin().getSenha());
 		

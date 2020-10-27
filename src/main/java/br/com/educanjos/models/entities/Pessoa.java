@@ -25,11 +25,11 @@ public class Pessoa {
     private Login login;
 
     @ManyToMany
-    private List<Materia> materias;
+    private List<Materia> materia;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Perfil perfil;
-    
+
     public Pessoa(Long id) {
         this.id = id;
     }

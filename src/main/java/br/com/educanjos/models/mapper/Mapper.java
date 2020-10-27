@@ -16,7 +16,7 @@ public class Mapper {
         pessoa.setPerfil(new Perfil(entrada.getPerfil()));
         pessoa.setTipoCadastro(TipoCadastroPessoa.get(entrada.getTipoCadastro()));
         List<Materia> materias = entrada.getMaterias().stream().map(id -> new Materia(id)).collect(Collectors.toList());
-        pessoa.setMaterias(materias);
+        pessoa.setMateria(materias);
         return pessoa;
     }
 

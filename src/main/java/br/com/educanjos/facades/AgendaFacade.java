@@ -27,6 +27,11 @@ public class AgendaFacade {
         verificaIsPresente(entity, id.toString());
         return entity.get();
     }
+    
+    public List<PessoaAgenda> getByPessoaIdAndDiaSemana(Long pessoaId, Long diaSemana){
+    	 List<PessoaAgenda> entities = repository.getByPessoaIdAndDiaSemana(pessoaId, diaSemana);
+        return entities;
+    }
 
     public List<PessoaAgenda> getAllAgenda(){
         List<PessoaAgenda> entities = repository.findAll();
@@ -38,6 +43,10 @@ public class AgendaFacade {
     	PessoaAgenda entity = getAgendaById(id);
         agenda.setId(entity.getId());
         repository.save(entity);
+    }
+    
+    public void deleteById(Long id) {
+    	repository.deleteById(id);
     }
 
 }

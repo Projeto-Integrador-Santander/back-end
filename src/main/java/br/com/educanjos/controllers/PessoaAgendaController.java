@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,12 @@ public class PessoaAgendaController {
     public PessoaAgenda getById(@PathVariable("id") @NotNull Long id) {
         return facade.getAgendaById(id);
     }
+    
+    @GetMapping("/{pessoaId}/{diaSemana}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PessoaAgenda> getByPessoaIdAndDiaSemana(@PathVariable("pessoaId") @NotNull Long pessoaId, @PathVariable("diaSemana") @NotNull Long diaSemana) {
+        return facade.getByPessoaIdAndDiaSemana(pessoaId, diaSemana);
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -52,6 +59,12 @@ public class PessoaAgendaController {
     public void atualiza(@PathVariable("id") @NotNull Long id,
                          @RequestBody PessoaAgenda agenda) {
         facade.atualizaAgenda(id, agenda);
+    }
+    
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteById(@PathVariable("id") @NotNull Long id) {
+        facade.deleteById(id);
     }
 
 }

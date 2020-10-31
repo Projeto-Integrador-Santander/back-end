@@ -3,6 +3,7 @@ package br.com.educanjos.facades;
 import static br.com.educanjos.utils.ValidationsUtil.verificaIsEmpty;
 import static br.com.educanjos.utils.ValidationsUtil.verificaIsPresente;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,31 @@ public class AgendaFacade {
     public List<PessoaAgenda> getByPessoaIdAndDiaSemana(Long pessoaId, Long diaSemana){
     	 List<PessoaAgenda> entities = repository.getByPessoaIdAndDiaSemana(pessoaId, diaSemana);
         return entities;
+    }
+    
+    public List<PessoaAgenda> getByMateriasIdAndDiaSemana(List<Long> materiasId, Long diaSemana) {
+    	
+    	List<PessoaAgenda> lista = new ArrayList<PessoaAgenda>();
+    	
+    	for (Long materiaId : materiasId) {
+    		
+    		if (diaSemana > 0) {
+    			List<PessoaAgenda> listaPorMateriaDiaSemana = repository.getByMateriaIdAndDiaSemana(materiaId, diaSemana);
+    			
+    			if (listaPorMateriaDiaSemana != null && listaPorMateriaDiaSemana.size() > 0) {
+    				lista.addAll(listaPorMateriaDiaSemana);
+    			}
+    			
+			} else {
+    			List<PessoaAgenda> listaPorMateria = repository.getByMateriaId(materiaId);
+    			
+    			if (listaPorMateria != null && listaPorMateria.size() > 0) {
+    				lista.addAll(listaPorMateria);
+    			}
+			}			
+		}
+
+    	return lista;
     }
 
     public List<PessoaAgenda> getAllAgenda(){

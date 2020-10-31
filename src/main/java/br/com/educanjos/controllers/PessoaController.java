@@ -55,5 +55,11 @@ public class PessoaController {
     public void inativa(@PathVariable("id") @NotNull Long id) {
         facade.deletePessoa(id);
     }
+    
+    @GetMapping("/professor")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Pessoa> getAllProfessor() {
+        return facade.getAllProfessor();
+    }
 
 }

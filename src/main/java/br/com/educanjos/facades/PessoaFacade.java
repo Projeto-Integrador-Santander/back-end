@@ -58,6 +58,10 @@ public class PessoaFacade {
         return entity;
     }
     
+    public List<Pessoa> getAllProfessor(){
+        List<Pessoa> entities = repository.findByTipoCadastro(TipoCadastroPessoa.PROFESSOR);
+        return entities;
+    }
     
 
     public List<Pessoa> getAllPessoa(){

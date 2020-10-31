@@ -47,6 +47,12 @@ public class PessoaAgendaController {
     public List<PessoaAgenda> getByPessoaIdAndDiaSemana(@PathVariable("pessoaId") @NotNull Long pessoaId, @PathVariable("diaSemana") @NotNull Long diaSemana) {
         return facade.getByPessoaIdAndDiaSemana(pessoaId, diaSemana);
     }
+    
+    @GetMapping("aula/{materiasId}/{diaSemana}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PessoaAgenda> getByMateriasIdAndDiaSemana(@PathVariable("materiasId") @NotNull List<Long> materiasId, @PathVariable("diaSemana") @NotNull Long diaSemana) {
+        return facade.getByMateriasIdAndDiaSemana(materiasId, diaSemana);
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

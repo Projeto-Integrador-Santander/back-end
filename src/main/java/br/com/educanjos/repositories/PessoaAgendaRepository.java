@@ -11,4 +11,8 @@ import br.com.educanjos.models.entities.PessoaAgenda;
 public interface PessoaAgendaRepository extends JpaRepository<PessoaAgenda, Long>{
 	
 	List<PessoaAgenda> getByPessoaIdAndDiaSemana(Long pessoaId, Long diaSemana);
+	
+	List<PessoaAgenda> getByMateriaIdAndDiaSemana(Long materiaId, Long diaSemana);
+	
+	List<PessoaAgenda> getByMateriaId(Long materiaId);
 }

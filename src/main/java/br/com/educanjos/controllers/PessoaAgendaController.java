@@ -31,8 +31,8 @@ public class PessoaAgendaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PessoaAgenda newAgenda(@RequestBody PessoaAgenda Agenda) {
-        return facade.newAgenda(Agenda);
+    public PessoaAgenda newAgenda(@RequestBody PessoaAgenda agenda) {
+        return facade.newAgenda(agenda);
     }
 
     @GetMapping("/{id}")
@@ -50,8 +50,8 @@ public class PessoaAgendaController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void atualiza(@PathVariable("id") @NotNull Long id,
-                         @RequestBody PessoaAgenda Agenda) {
-        facade.atualizaAgenda(id, Agenda);
+                         @RequestBody PessoaAgenda agenda) {
+        facade.atualizaAgenda(id, agenda);
     }
 
 }

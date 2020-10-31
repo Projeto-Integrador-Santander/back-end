@@ -25,7 +25,7 @@ public class Pessoa {
     private Login login;
 
     @ManyToMany
-    private List<Materia> materia;
+    private List<Materia> materias;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Perfil perfil;

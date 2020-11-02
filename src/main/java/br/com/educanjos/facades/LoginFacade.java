@@ -6,8 +6,10 @@ import br.com.educanjos.repositories.LoginRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
+
 import static br.com.educanjos.utils.ValidationsUtil.*;
 
 @Service
@@ -16,17 +18,9 @@ public class LoginFacade {
     @Autowired
     private LoginRepository repository;
 
-    public Login newLogin(Login Login) {
-    	
-    	Login entity = repository.findByEmail(Login.getEmail());
-    	
-    	if (entity == null || entity.getId() == 0) {
-    		return repository.save(Login);
-    	} else {
-    		// Solta um erro
-    		return null;
-    	}
-    	
+    public Login newLogin(Login login) {
+        findByEmail(login.getEmail());
+        return repository.save(login);
     }
 
     public Login getLoginById(Long id) {
@@ -40,9 +34,11 @@ public class LoginFacade {
         verificaIsNotNull(entity, "VALIDACAO-5", email);
         return entity;
     }
-    
+
     public Login getLoginByEmailSenha(String email, String senha) {
-        return repository.findByEmailAndSenha(email, senha);
+        Login login = repository.findByEmailAndSenha(email, senha);
+        verificaIsNull(login, "VALIDACAO-8");
+        return login;
     }
 
     public List<Login> getAllLogin() {
@@ -50,14 +46,14 @@ public class LoginFacade {
         verificaIsEmpty(entities);
         return entities;
     }
-    
-    public void atualizaSenha(String email, String senha){
+
+    public void atualizaSenha(String email, String senha) {
         Login login = getLoginByEmail(email);
         login.setSenha(senha);
         repository.save(login);
     }
 
-    public void findByEmail(String email){
+    public void findByEmail(String email) {
         Login entity = repository.findByEmail(email);
         verificaIsNotNull(entity, "VALIDACAO-7", email);
     }

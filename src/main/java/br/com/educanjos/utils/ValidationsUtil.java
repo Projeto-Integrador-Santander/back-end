@@ -45,4 +45,7 @@ public class ValidationsUtil {
             throw new ExceptionEducanjosApi(HttpStatus.NOT_FOUND, codErro);
     }
 
+    public static boolean verificaIsEmptyBoolean(List<?> list){
+        return Objects.isNull(list) || list.isEmpty();
+    }
 }

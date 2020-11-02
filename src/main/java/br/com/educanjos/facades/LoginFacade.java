@@ -37,7 +37,7 @@ public class LoginFacade {
 
     public Login getLoginByEmailSenha(String email, String senha) {
         Login login = repository.findByEmailAndSenha(email, senha);
-        verificaIsNull(login, "VALIDACAO-8");
+        verificaIsNull(login, "VALIDACAO-8", null);
         return login;
     }
 

@@ -62,7 +62,7 @@ public class PessoaFacade {
     
     public Pessoa getPessoaByIdLogin(Long id){
         Pessoa entity = repository.findByLoginId(id);
-        verificaIsNotNull(entity, "VERIFICA", id.toString());
+        verificaIsNull(entity, "VALIDACAO-1", id.toString());
         return entity;
     }
     
@@ -70,7 +70,6 @@ public class PessoaFacade {
         List<Pessoa> entities = repository.findByTipoCadastro(TipoCadastroPessoa.PROFESSOR);
         return entities;
     }
-    
 
     public List<Pessoa> getAllPessoa(){
         List<Pessoa> entities = repository.findAll();

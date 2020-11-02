@@ -21,9 +21,13 @@ public class ValidationsUtil {
             throw new ExceptionEducanjosApi(HttpStatus.NO_CONTENT, "VALIDACAO-2");
     }
 
-    public static void verificaIsNull(Object object, @NonNull String codErro){
+    public static void verificaIsNull(Object object, @NonNull String codErro, String param){
         if (Objects.isNull(object))
-            throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
+            if (Objects.isNull(param)){
+                throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
+            }else{
+                throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro, param);
+            }
     }
 
     public static void verificaIsNotNull(Object object, @NonNull String codErro, String param){

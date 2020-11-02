@@ -22,7 +22,15 @@ public class PessoaFacade {
 	@Autowired
 	private PessoaRepository repository;
 
+	@Autowired
+	private PerfilFacade perfilFacade;
+
+	@Autowired
+	private LoginFacade loginFacade;
+
 	public Pessoa newPessoa(Pessoa pessoa, String tipo){
+        perfilFacade.findByCPF(pessoa.getPerfil().getCpf());
+        loginFacade.findByEmail(pessoa.getLogin().getEmail());
         pessoa.setTipoCadastro(TipoCadastroPessoa.get(tipo));
 		return repository.save(pessoa);
 	}
@@ -83,4 +91,5 @@ public class PessoaFacade {
             throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, "VALIDACAO-4");
         }
     }
+
 }

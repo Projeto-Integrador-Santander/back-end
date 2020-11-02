@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 
 @Entity
 @Getter
@@ -21,12 +22,14 @@ public class Pessoa {
    
     private TipoCadastroPessoa tipoCadastro;
 
+    @Valid
     @OneToOne(cascade = CascadeType.PERSIST)
     private Login login;
 
     @ManyToMany
     private List<Materia> materias;
 
+    @Valid
     @OneToOne(cascade = CascadeType.PERSIST)
     private Perfil perfil;
 

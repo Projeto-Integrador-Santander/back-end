@@ -36,9 +36,9 @@ public class PerfilFacade {
         repository.updateInactivePerfil(id);
     }
 
-    private void findByCPF(String cpf){
+    public void findByCPF(String cpf){
         Perfil entity = repository.findByCpf(cpf);
-        verificaIsNotNull(entity, "VALIDACAO-3", cpf);
+        verificaIsNotNull(entity, "VALIDACAO-0", cpf);
     }
 
 

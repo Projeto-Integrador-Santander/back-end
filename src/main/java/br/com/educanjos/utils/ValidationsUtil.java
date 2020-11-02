@@ -27,7 +27,7 @@ public class ValidationsUtil {
     }
 
     public static void verificaIsNotNull(Object object, @NonNull String codErro, String param){
-        if (Objects.isNull(object))
+        if (!Objects.isNull(object))
             if (Objects.isNull(param)){
                 throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
             }else{
@@ -39,5 +39,10 @@ public class ValidationsUtil {
         if (status.equals("INATIVO"))
             throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, "VALIDACAO-3");
     }
-   
+
+    public static void verificaIsNotPresente(@NonNull Optional<?> optional, String codErro){
+        if (optional.isPresent())
+            throw new ExceptionEducanjosApi(HttpStatus.NOT_FOUND, codErro);
+    }
+
 }

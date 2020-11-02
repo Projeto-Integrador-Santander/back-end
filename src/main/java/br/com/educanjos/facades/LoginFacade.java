@@ -1,6 +1,7 @@
 package br.com.educanjos.facades;
 
 import br.com.educanjos.models.entities.Login;
+import br.com.educanjos.models.entities.Perfil;
 import br.com.educanjos.repositories.LoginRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,4 +56,10 @@ public class LoginFacade {
         login.setSenha(senha);
         repository.save(login);
     }
+
+    public void findByEmail(String email){
+        Login entity = repository.findByEmail(email);
+        verificaIsNotNull(entity, "VALIDACAO-7", email);
+    }
+
 }

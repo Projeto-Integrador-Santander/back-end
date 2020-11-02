@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +22,7 @@ public class PessoaController {
 
     @PostMapping("{tipo}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa newPessoa(@RequestBody Pessoa pessoa,
+    public Pessoa newPessoa(@RequestBody @Valid Pessoa pessoa,
                             @PathVariable("tipo") String tipo) {
         return facade.newPessoa(pessoa, tipo);
     }

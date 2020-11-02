@@ -4,6 +4,7 @@ import br.com.educanjos.models.enums.StatusPerfil;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 
@@ -22,6 +23,8 @@ public class Perfil {
     @JsonProperty("sobrenome")
     private String sobrenome;
 
+    @CPF(message = "CPF inválido.")
+    @Column(unique = true)
     @JsonProperty("cpf")
     private String cpf;
 

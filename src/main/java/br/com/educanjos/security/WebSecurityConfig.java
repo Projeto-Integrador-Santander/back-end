@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws java.lang.Exception {
         http.csrf().disable().authorizeRequests()
         
-        .antMatchers().permitAll()
+        .antMatchers("login/v1/atualiza-senha").permitAll()
         .antMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "USER")
         .antMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
         .antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")

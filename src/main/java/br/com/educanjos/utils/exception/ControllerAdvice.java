@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ControllerAdvice {
     @ExceptionHandler(ExceptionEducanjosApi.class)
     public ResponseEntity<ResponseException> apiLinkedinException(ExceptionEducanjosApi exception) {
+        System.out.println(exception.getCodErro());
+        System.out.println(exception.getMessage());
         return new ResponseEntity<>(new ResponseException(exception), exception.getStatus());
     }
 

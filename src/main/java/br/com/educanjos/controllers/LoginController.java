@@ -54,7 +54,7 @@ public class LoginController {
         return facade.getAllLogin();
     }
 
-    @PatchMapping("atualiza-senha/{idRequisicao}")
+    @PostMapping("atualiza-senha/{idRequisicao}")
     @ResponseStatus(HttpStatus.OK)
     public void atualizaSenha(@RequestBody @Valid EmailDTO email,
                               @PathVariable("idRequisicao") @NotNull Long idRequisicao){

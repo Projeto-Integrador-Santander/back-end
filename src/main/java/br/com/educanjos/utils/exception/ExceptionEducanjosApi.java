@@ -26,4 +26,9 @@ public class ExceptionEducanjosApi extends ResponseStatusException {
         this.message = String.format(MessageConfig.getMessage(codErro), args);
     }
 
+    public ExceptionEducanjosApi(ExceptionEducanjosApi ex) {
+        super(ex.getStatus(), (String)null, (Throwable)null);
+        this.codErro = ex.getCodErro();
+        this.message = ex.getMessage();
+    }
 }

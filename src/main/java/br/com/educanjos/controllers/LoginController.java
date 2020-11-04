@@ -1,14 +1,18 @@
 package br.com.educanjos.controllers;
 
 import br.com.educanjos.facades.LoginFacade;
+import br.com.educanjos.models.dto.EmailDTO;
+import br.com.educanjos.models.dto.EnvioEmail;
 import br.com.educanjos.models.entities.Login;
-import com.sun.istack.NotNull;
+import br.com.educanjos.service.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -50,11 +54,16 @@ public class LoginController {
         return facade.getAllLogin();
     }
 
-    @PatchMapping("atualiza-senha")
+    @PatchMapping("atualiza-senha/{idRequisicao}")
     @ResponseStatus(HttpStatus.OK)
-    public void atualizaSenha(@RequestParam("email") String email,
-                              @RequestBody Login login){
-        facade.atualizaSenha(email, login.getSenha());
+    public void atualizaSenha(@RequestBody @Valid EmailDTO email,
+                              @PathVariable("idRequisicao") @NotNull Long idRequisicao){
+        facade.atualizaSenha(email, idRequisicao);
     }
 
+    @PostMapping("esqueci-senha")
+    @ResponseStatus(HttpStatus.OK)
+    public void esqueciMinhaSenha(@RequestBody @Valid EmailDTO email){
+        facade.recuperarSenha(email);
+    }
 }

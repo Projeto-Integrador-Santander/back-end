@@ -39,9 +39,13 @@ public class ValidationsUtil {
             }
     }
 
-    public static void verificaIsInactive(@NonNull String status){
+    public static void verificaIsInactive(@NonNull String status, String codigoErro){
         if (status.equals("INATIVO"))
-            throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, "VALIDACAO-3");
+            if (Objects.isNull(codigoErro)){
+                throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, "VALIDACAO-3");
+            }else{
+                throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, codigoErro);
+            }
     }
 
     public static void verificaIsNotPresente(@NonNull Optional<?> optional, String codErro){

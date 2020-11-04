@@ -2,6 +2,7 @@ package br.com.educanjos.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -22,15 +23,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http.csrf().disable().authorizeRequests()
         
         .antMatchers().permitAll()
-        .antMatchers("endereco/v1").hasAnyRole("ADMIN", "PROFESSOR", "ALUNO")
-        .antMatchers("login/v1").hasAnyRole("ADMIN", "PROFESSOR", "ALUNO")
-        .antMatchers("materia/v1").hasAnyRole("ADMIN", "PROFESSOR", "ALUNO")
-        .antMatchers("perfil/v1").hasAnyRole("ADMIN", "PROFESSOR", "ALUNO")
-        .antMatchers("agenda/v1").hasAnyRole("ADMIN", "PROFESSOR", "ALUNO")
-        .antMatchers("pessoa/v1").hasAnyRole("ADMIN", "PROFESSOR", "ALUNO")
-        .antMatchers("professor-materia/v1").hasAnyRole("ADMIN", "PROFESSOR", "ALUNO")
+        .antMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "USER")
+        .antMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
+        .antMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN")
+        .antMatchers(HttpMethod.PATCH).hasAnyRole("ADMIN")
+        .antMatchers(HttpMethod.PUT).hasAnyRole("ADMIN")
         
         .antMatchers().authenticated().and()
+        .httpBasic().and()
         .formLogin().permitAll().and()
         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }

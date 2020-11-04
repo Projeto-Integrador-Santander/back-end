@@ -1,31 +1,34 @@
 package br.com.educanjos.security;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import br.com.educanjos.models.entities.Usuario;
-import br.com.educanjos.repositories.UsuarioRepository;
+import br.com.educanjos.models.entities.Login;
+import br.com.educanjos.repositories.LoginRepository;
 
 @Repository
 public class ImplementsUserDetailsService implements UserDetailsService{
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private LoginRepository loginRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		
-		Usuario usuario = usuarioRepository.findByLogin(login);
+		Login login = loginRepository.findByEmail(email);
 		
-		if(usuario == null) {
+		if(login == null) {
 			throw new UsernameNotFoundException("Usuário não encontrado!");
 		}
 		
-		return usuario;
+		return new User(login.getEmail(), login.getPassword(), login.getAuthorities());
+
 	}
 
 }

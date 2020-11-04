@@ -50,7 +50,7 @@ public class LoginController {
         return facade.getAllLogin();
     }
 
-    @PatchMapping("atualiza-senha")
+    @PatchMapping("/atualiza-senha")
     @ResponseStatus(HttpStatus.OK)
     public void atualizaSenha(@RequestParam("email") String email,
                               @RequestBody Login login){

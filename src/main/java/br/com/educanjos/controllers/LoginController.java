@@ -54,6 +54,7 @@ public class LoginController {
         return facade.getAllLogin();
     }
 
+
     @PostMapping("atualiza-senha/{idRequisicao}")
     @ResponseStatus(HttpStatus.OK)
     public void atualizaSenha(@RequestBody @Valid EmailDTO email,

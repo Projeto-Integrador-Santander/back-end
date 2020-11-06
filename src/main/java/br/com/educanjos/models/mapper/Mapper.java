@@ -20,10 +20,10 @@ public class Mapper {
         return pessoa;
     }
 
-    public static ProfessorMateria entradaToEntity(@NotNull Long idProfessor, @NotNull Long idMateria) {
-        ProfessorMateria pessoa = new ProfessorMateria();
-        pessoa.setMateria(new Materia(idMateria));
-        pessoa.setProfessor(new Pessoa(idProfessor));
-        return pessoa;
-    }
+//    public static ProfessorMateria entradaToEntity(@NotNull Long idProfessor, @NotNull Long idMateria) {
+//        ProfessorMateria pessoa = new ProfessorMateria();
+//        pessoa.setMateria(new Materia(idMateria));
+//        pessoa.setProfessor(new Pessoa(idProfessor));
+//        return pessoa;
+//    }
 }

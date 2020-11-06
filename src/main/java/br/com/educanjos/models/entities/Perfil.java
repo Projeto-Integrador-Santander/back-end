@@ -1,6 +1,6 @@
 package br.com.educanjos.models.entities;
 
-import br.com.educanjos.models.enums.StatusPerfil;
+import br.com.educanjos.models.enums.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,10 +37,10 @@ public class Perfil {
     @JsonProperty("sobre")
     private String sobre;
 
-    private StatusPerfil status;
+    private Status status;
 
     public Perfil(){
-        this.status = StatusPerfil.ATIVO;
+        this.status = Status.ATIVO;
     }
 
     public Perfil(Long id){

@@ -32,7 +32,7 @@ public class PerfilFacade {
 
     public void deletePerfil(Long id){
         Perfil entity = getPerfilById(id);
-        verificaIsInactive(entity.getStatus().toString());
+        verificaIsInactive(entity.getStatus().toString(), null);
         repository.updateInactivePerfil(id);
     }
 

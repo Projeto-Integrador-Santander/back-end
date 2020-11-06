@@ -1,6 +1,6 @@
 package br.com.educanjos.models.enums;
 
-public enum StatusPerfil {
+public enum Status {
     ATIVO,
     INATIVO
 }

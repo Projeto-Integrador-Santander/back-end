@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import br.com.educanjos.models.entities.Login;
 import br.com.educanjos.repositories.LoginRepository;
 
+@Service
 @Repository
 public class ImplementsUserDetailsService implements UserDetailsService{
 	

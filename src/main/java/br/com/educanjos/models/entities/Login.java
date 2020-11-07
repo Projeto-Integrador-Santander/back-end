@@ -30,14 +30,7 @@ public class Login implements UserDetails{
     @Column(unique = true)
     private String email;
 
-    @JsonIgnore
-    private String senha;
-    
-    private boolean admin;
-	
-	public boolean isAdmin() {
-		return admin;
-	}
+    private String senha;	
 	
     public Login(Long id) {
         this.id = id;
@@ -46,13 +39,7 @@ public class Login implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		
-		if(this.admin) {
-			return AuthorityUtils.createAuthorityList("ADMIN", "USER");
-		} else {
-			return AuthorityUtils.createAuthorityList("USER");
-		}
-		
+		return AuthorityUtils.createAuthorityList("USER");
 	}
 
 	@Override

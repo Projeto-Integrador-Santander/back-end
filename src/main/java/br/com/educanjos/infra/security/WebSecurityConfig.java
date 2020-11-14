@@ -20,7 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
     protected void configure(HttpSecurity http) throws java.lang.Exception {
-        http.csrf().disable().authorizeRequests()
+				
+		http.csrf().disable().authorizeRequests()
         
         .antMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "USER")
         .antMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
@@ -32,23 +33,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .httpBasic().and()
         .formLogin().permitAll().and()
         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+
         
     }
 	
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws java.lang.Exception {
-        auth.userDetailsService(userDetailsService)
+		auth.userDetailsService(userDetailsService)
         .passwordEncoder(new BCryptPasswordEncoder());
-		
 		auth.inMemoryAuthentication().withUser("admin").password("{noop}1234").roles("ADMIN");
-        System.out.println(auth);
-        System.out.println("config security");
 
-    }
-	
-	@Override
-    public void configure(WebSecurity web) throws java.lang.Exception {
-        web.ignoring().antMatchers("/login/v1/atualiza-senha/**");
     }
     
 }

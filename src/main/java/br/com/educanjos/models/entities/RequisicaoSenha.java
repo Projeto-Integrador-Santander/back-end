@@ -21,6 +21,8 @@ public class RequisicaoSenha {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String email;
+
     private String token;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
@@ -32,7 +34,7 @@ public class RequisicaoSenha {
 
     public RequisicaoSenha(String email, String token){
         this.lastUpdate = LocalDateTime.now();
-        this.token = email;
+        this.email = email;
         this.status = Status.ATIVO;
         this.token = token;
         this.dataExpiracao = this.lastUpdate.plusMinutes(30L);
@@ -40,6 +42,7 @@ public class RequisicaoSenha {
 
     public RequisicaoSenha(RequisicaoSenha requisicaoSenha, Status status) {
         this.id =  requisicaoSenha.id;
+        this.email = email;
         this.token = requisicaoSenha.token;
         this.lastUpdate = LocalDateTime.now();
         this.status = status;

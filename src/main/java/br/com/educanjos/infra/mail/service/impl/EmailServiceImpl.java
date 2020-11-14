@@ -36,6 +36,7 @@ public class EmailServiceImpl implements EmailService {
         };
         try {
             mailSender.send(preparator);
+            System.out.println("mail send");
         }catch (MailException e) {
             throw new ExceptionEducanjosApi(HttpStatus.INTERNAL_SERVER_ERROR, "EMAIL-0");
         }catch (Exception e){

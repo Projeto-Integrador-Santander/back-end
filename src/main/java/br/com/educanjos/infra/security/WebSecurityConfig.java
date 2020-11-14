@@ -19,7 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
     protected void configure(HttpSecurity http) throws java.lang.Exception {
-        http.csrf().disable().antMatcher("/login/v1/atualiza-senha/**").authorizeRequests()
+        http.csrf().disable().antMatcher("/login/v1/atualiza-senha/**").antMatcher("/login/v1/esqueci-senha/**").authorizeRequests()
+
         
         .antMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "USER")
         .antMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
@@ -39,7 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .passwordEncoder(new BCryptPasswordEncoder());
 		
 		auth.inMemoryAuthentication().withUser("admin").password("{noop}1234").roles("ADMIN");
-        
+        System.out.println(auth);
+        System.out.println("config security");
+
     }
     
 }

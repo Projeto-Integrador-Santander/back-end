@@ -57,11 +57,10 @@ public class LoginController {
     }
 
 
-    @PostMapping("atualiza-senha/{idRequisicao}")
+    @PostMapping("atualiza-senha")
     @ResponseStatus(HttpStatus.OK)
-    public void atualizaSenha(@RequestBody @Valid EmailDTO email,
-                              @PathVariable("idRequisicao") @NotNull String idRequisicao) {
-        EnvioEmail dadosEmail = facade.atualizaSenha(email, idRequisicao);
+    public void atualizaSenha(@RequestBody @Valid EmailDTO email) {
+        EnvioEmail dadosEmail = facade.atualizaSenha(email);
         emailService.enviarEmail(dadosEmail);
     }
 

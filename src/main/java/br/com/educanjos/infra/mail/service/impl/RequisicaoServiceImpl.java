@@ -21,13 +21,14 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 
     @Override
     public RequisicaoSenha geraRequisicaoSenha(String email) {
-        String token = geraTokenRandom();
-        Boolean exists = true;
+        String token;
+        Boolean exists;
 
-        while (exists) {
-            exists = !Objects.isNull(requisicaoSenhaRepository.findByToken(token));
-            token = geraTokenRandom();
-        }
+       do{
+           token = geraTokenRandom();
+           exists = !Objects.isNull(requisicaoSenhaRepository.findByToken(token));
+       }while (exists);
+
         return requisicaoSenhaRepository.save(new RequisicaoSenha(email, token));
     }
 
@@ -51,7 +52,7 @@ public class RequisicaoServiceImpl implements RequisicaoService {
     private void verificaTokenValido(RequisicaoSenha requisicaoSenha){
         Boolean isBefore = LocalDateTime.now().isBefore(requisicaoSenha.getDataExpiracao());
         verificaIsInactiveOuCancelado(requisicaoSenha.getStatus().toString(), "VALIDACAO-9");
-        if (!isBefore){
+        if (isBefore){
             atualizaStatusRequisicao(requisicaoSenha, Status.CANCELADO);
             throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, "VALIDACAO-11");
         }

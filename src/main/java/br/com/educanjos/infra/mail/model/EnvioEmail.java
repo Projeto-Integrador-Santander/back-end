@@ -33,7 +33,7 @@ public class EnvioEmail {
     private String montaTextoDefault(EnvioEmailAssunto envioEmailAssunto, Pessoa pessoa, RequisicaoSenha requisicaoSenha){
         String textoDefault = "";
         if (envioEmailAssunto.equals(EnvioEmailAssunto.RECUPERACAO_SENHA)){
-            Long requisicaoId = requisicaoSenha.getId();
+            String requisicaoId = requisicaoSenha.getToken();
             String tipoCadastro = pessoa.getTipoCadastro().getDescricao();
             textoDefault = String.format(envioEmailAssunto.getTextoDefault(), tipoCadastro.toLowerCase(), requisicaoId);
         }else if(envioEmailAssunto.equals(EnvioEmailAssunto.CADASTRO_EFETUADO)){

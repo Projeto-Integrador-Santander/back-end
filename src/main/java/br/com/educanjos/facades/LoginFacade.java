@@ -59,8 +59,8 @@ public class LoginFacade {
         return entities;
     }
 
-    public EnvioEmail atualizaSenha(EmailDTO emailDTO, String idRequisicao) {
-        RequisicaoSenha requisicaoSenha = requisicaoService.buscaPorToken(idRequisicao);
+    public EnvioEmail atualizaSenha(EmailDTO emailDTO) {
+        RequisicaoSenha requisicaoSenha = requisicaoService.buscaPorToken(emailDTO.getToken());
         Login login = getLoginByEmail(emailDTO.getEmail());
         login.setSenha(emailDTO.getSenha());
         repository.save(login);

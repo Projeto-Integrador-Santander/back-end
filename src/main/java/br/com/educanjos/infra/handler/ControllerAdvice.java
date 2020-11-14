@@ -1,5 +1,7 @@
-package br.com.educanjos.utils.exception;
+package br.com.educanjos.infra.handler;
 
+import br.com.educanjos.infra.handler.model.ExceptionEducanjosApi;
+import br.com.educanjos.infra.handler.model.ResponseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

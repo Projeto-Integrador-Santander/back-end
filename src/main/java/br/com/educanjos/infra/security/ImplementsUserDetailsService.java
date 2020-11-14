@@ -1,4 +1,4 @@
-package br.com.educanjos.security;
+package br.com.educanjos.infra.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

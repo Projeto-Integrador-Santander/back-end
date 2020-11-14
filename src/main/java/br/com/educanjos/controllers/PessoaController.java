@@ -1,14 +1,17 @@
 package br.com.educanjos.controllers;
 
 import br.com.educanjos.facades.PessoaFacade;
+import br.com.educanjos.infra.mail.model.EnvioEmail;
 import br.com.educanjos.models.entities.Pessoa;
+import br.com.educanjos.models.enums.EnvioEmailAssunto;
+import br.com.educanjos.infra.mail.service.EmailService;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -16,15 +19,22 @@ import java.util.List;
 @RequestMapping("pessoa/v1")
 @Validated
 @AllArgsConstructor
+@NoArgsConstructor
 public class PessoaController {
+
 	@Autowired
     private PessoaFacade facade;
+
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping("{tipo}")
     @ResponseStatus(HttpStatus.CREATED)
     public Pessoa newPessoa(@RequestBody @Valid Pessoa pessoa,
                             @PathVariable("tipo") String tipo) {
-        return facade.newPessoa(pessoa, tipo);
+        Pessoa response = facade.newPessoa(pessoa, tipo);
+        emailService.enviarEmail(new EnvioEmail(EnvioEmailAssunto.CADASTRO_EFETUADO, pessoa, null));
+        return response;
     }
     
     @PutMapping("{tipo}")

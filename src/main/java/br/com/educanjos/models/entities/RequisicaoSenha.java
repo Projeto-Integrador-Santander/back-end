@@ -1,6 +1,7 @@
 package br.com.educanjos.models.entities;
 
 import br.com.educanjos.models.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,20 +20,33 @@ public class RequisicaoSenha {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String email;
+
+    private String token;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime lastUpdate;
+
+    private LocalDateTime dataExpiracao;
+
     private Status status;
 
-    public RequisicaoSenha(String email){
+    public RequisicaoSenha(String email, String token){
         this.lastUpdate = LocalDateTime.now();
         this.email = email;
         this.status = Status.ATIVO;
+        this.token = token;
+        this.dataExpiracao = this.lastUpdate.plusMinutes(30L);
     }
 
-    public RequisicaoSenha(RequisicaoSenha requisicaoSenha) {
+    public RequisicaoSenha(RequisicaoSenha requisicaoSenha, Status status) {
         this.id =  requisicaoSenha.id;
-        this.email = requisicaoSenha.email;
+        this.email = email;
+        this.token = requisicaoSenha.token;
         this.lastUpdate = LocalDateTime.now();
-        this.status = Status.INATIVO;
+        this.status = status;
+        this.dataExpiracao = requisicaoSenha.dataExpiracao;
     }
+
 }

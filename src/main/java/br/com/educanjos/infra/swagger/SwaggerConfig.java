@@ -1,4 +1,4 @@
-package br.com.educanjos.utils.config;
+package br.com.educanjos.infra.swagger;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;

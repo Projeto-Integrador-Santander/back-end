@@ -1,9 +1,9 @@
-package br.com.educanjos.service.impl;
+package br.com.educanjos.infra.mail.service.impl;
 
-import br.com.educanjos.models.dto.EnvioEmail;
-import br.com.educanjos.service.EmailContentBuilder;
-import br.com.educanjos.service.EmailService;
-import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
+import br.com.educanjos.infra.mail.model.EnvioEmail;
+import br.com.educanjos.infra.mail.service.EmailContentBuilder;
+import br.com.educanjos.infra.mail.service.EmailService;
+import br.com.educanjos.infra.handler.model.ExceptionEducanjosApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -31,11 +31,12 @@ public class EmailServiceImpl implements EmailService {
             message.setTo(envioEmail.getEmail());
             message.setFrom(email);
             message.setSubject(envioEmail.getAssunto());
-            String content = mailContentBuilder.build(envioEmail.getCorpoEmail());
+            String content = mailContentBuilder.build(envioEmail.getCorpoEmail(), envioEmail.getSaudacao());
             message.setText(content, true);
         };
         try {
             mailSender.send(preparator);
+            System.out.println("mail send");
         }catch (MailException e) {
             throw new ExceptionEducanjosApi(HttpStatus.INTERNAL_SERVER_ERROR, "EMAIL-0");
         }catch (Exception e){

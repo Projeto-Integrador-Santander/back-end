@@ -1,4 +1,4 @@
-package br.com.educanjos.utils.config;
+package br.com.educanjos.infra.handler;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

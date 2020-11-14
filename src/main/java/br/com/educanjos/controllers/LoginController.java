@@ -2,15 +2,14 @@ package br.com.educanjos.controllers;
 
 import br.com.educanjos.facades.LoginFacade;
 import br.com.educanjos.models.dto.EmailDTO;
-import br.com.educanjos.models.dto.EnvioEmail;
+import br.com.educanjos.infra.mail.model.EnvioEmail;
 import br.com.educanjos.models.entities.Login;
-import br.com.educanjos.service.EmailService;
+import br.com.educanjos.infra.mail.service.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -23,6 +22,9 @@ public class LoginController {
 
     @Autowired
     private LoginFacade facade;
+
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,7 +43,7 @@ public class LoginController {
     public Login getByEmail(@PathVariable("email") @NotNull String email) {
         return facade.getLoginByEmail(email);
     }
-    
+
     @GetMapping("/{email}/{senha}")
     @ResponseStatus(HttpStatus.OK)
     public Login getByEmailSenha(@PathVariable("email") @NotNull String email, @PathVariable("senha") @NotNull String senha) {
@@ -55,16 +57,17 @@ public class LoginController {
     }
 
 
-    @PostMapping("atualiza-senha/{idRequisicao}")
+    @PostMapping("atualiza-senha")
     @ResponseStatus(HttpStatus.OK)
-    public void atualizaSenha(@RequestBody @Valid EmailDTO email,
-                              @PathVariable("idRequisicao") @NotNull Long idRequisicao){
-        facade.atualizaSenha(email, idRequisicao);
+    public void atualizaSenha(@RequestBody @Valid EmailDTO email) {
+        EnvioEmail dadosEmail = facade.atualizaSenha(email);
+        emailService.enviarEmail(dadosEmail);
     }
 
     @PostMapping("esqueci-senha")
     @ResponseStatus(HttpStatus.OK)
-    public void esqueciMinhaSenha(@RequestBody @Valid EmailDTO email){
-        facade.recuperarSenha(email);
+    public void esqueciMinhaSenha(@RequestBody @Valid EmailDTO email) {
+        EnvioEmail dadosEmail = facade.recuperarSenha(email);
+        emailService.enviarEmail(dadosEmail);
     }
 }

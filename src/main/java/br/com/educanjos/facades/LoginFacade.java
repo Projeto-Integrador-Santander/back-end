@@ -12,6 +12,7 @@ import br.com.educanjos.repositories.LoginRepository;
 
 import br.com.educanjos.repositories.RequisicaoSenhaRepository;
 import br.com.educanjos.service.EmailService;
+import br.com.educanjos.service.RequisicaoService;
 import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Email;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 import static br.com.educanjos.utils.ValidationsUtil.*;
 
@@ -30,13 +33,10 @@ public class LoginFacade {
     private LoginRepository repository;
 
     @Autowired
-    private RequisicaoSenhaRepository requisicaoSenhaRepository;
+    private RequisicaoService requisicaoService;
 
     @Autowired
     private PessoaFacade pessoaFacade;
-
-    @Autowired
-    private EmailService emailService;
 
     public Login newLogin(Login login) {
         findByEmail(login.getEmail());
@@ -67,15 +67,13 @@ public class LoginFacade {
         return entities;
     }
 
-    public void atualizaSenha(EmailDTO emailDTO, Long idRequisicao) {
-        List<RequisicaoSenha> requisicaoSenhaList = requisicaoSenhaRepository.findByIdAndEmailAndStatus(idRequisicao, emailDTO.getEmail(), Status.ATIVO);
-        verificaIsEmpty(requisicaoSenhaList);
-        RequisicaoSenha requisicaoSenha = requisicaoSenhaList.stream().findFirst().get();
-        verificaIsInactive(requisicaoSenha.getStatus().toString(), "VALIDACAO-9");
+    public EnvioEmail atualizaSenha(EmailDTO emailDTO, String idRequisicao) {
+        RequisicaoSenha requisicaoSenha = requisicaoService.buscaPorToken(idRequisicao);
         Login login = getLoginByEmail(emailDTO.getEmail());
         login.setSenha(emailDTO.getSenha());
         repository.save(login);
-        requisicaoSenhaRepository.save(new RequisicaoSenha(requisicaoSenha));
+        requisicaoService.atualizaStatusRequisicao(requisicaoSenha, Status.INATIVO);
+        return new EnvioEmail(EnvioEmailAssunto.RECUPERACAO_SENHA, pessoaFacade.getPessoaByIdLogin(login.getId()), null);
     }
 
     public void findByEmail(String email) {
@@ -83,11 +81,12 @@ public class LoginFacade {
         verificaIsNotNull(entity, "VALIDACAO-7", email);
     }
 
-    public void recuperarSenha(EmailDTO email) {
+    public EnvioEmail recuperarSenha(EmailDTO email) {
         Login entity = getLoginByEmail(email.getEmail());
         Pessoa pessoa = pessoaFacade.getPessoaByIdLogin(entity.getId());
-        RequisicaoSenha requisicaoSenha = requisicaoSenhaRepository.save(new RequisicaoSenha(entity.getEmail()));
-        emailService.enviarEmail(new EnvioEmail(EnvioEmailAssunto.RECUPERACAOSENHA, pessoa, requisicaoSenha));
+        return new EnvioEmail(EnvioEmailAssunto.RECUPERACAO_SENHA, pessoa, requisicaoService.geraRequisicaoSenha(email.getEmail()));
     }
+    
+
 
 }

@@ -31,7 +31,7 @@ public class EmailServiceImpl implements EmailService {
             message.setTo(envioEmail.getEmail());
             message.setFrom(email);
             message.setSubject(envioEmail.getAssunto());
-            String content = mailContentBuilder.build(envioEmail.getCorpoEmail());
+            String content = mailContentBuilder.build(envioEmail.getCorpoEmail(), envioEmail.getSaudacao());
             message.setText(content, true);
         };
         try {

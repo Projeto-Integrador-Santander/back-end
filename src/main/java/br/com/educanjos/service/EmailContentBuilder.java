@@ -12,9 +12,10 @@ public class EmailContentBuilder {
     @Autowired
     private TemplateEngine templateEngine;
 
-    public String build(String text) {
+    public String build(String text, String saudacao) {
         Context context = new Context();
         context.setVariable("corpoEmail", text);
+        context.setVariable("saudacao", saudacao);
         return templateEngine.process(new ClassPathResource("template-email").getPath(), context);
     }
 }

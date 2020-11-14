@@ -1,4 +1,4 @@
-package br.com.educanjos.utils.exception;
+package br.com.educanjos.infra.handler.model;
 
 import lombok.Getter;
 import org.springframework.web.bind.MethodArgumentNotValidException;

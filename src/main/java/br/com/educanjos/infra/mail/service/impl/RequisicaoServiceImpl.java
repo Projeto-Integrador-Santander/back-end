@@ -1,10 +1,10 @@
-package br.com.educanjos.service.impl;
+package br.com.educanjos.infra.mail.service.impl;
 
 import br.com.educanjos.models.entities.RequisicaoSenha;
 import br.com.educanjos.models.enums.Status;
 import br.com.educanjos.repositories.RequisicaoSenhaRepository;
-import br.com.educanjos.service.RequisicaoService;
-import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
+import br.com.educanjos.infra.mail.service.RequisicaoService;
+import br.com.educanjos.infra.handler.model.ExceptionEducanjosApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

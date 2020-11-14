@@ -1,10 +1,10 @@
 package br.com.educanjos.controllers;
 
 import br.com.educanjos.facades.PessoaFacade;
-import br.com.educanjos.models.dto.EnvioEmail;
+import br.com.educanjos.infra.mail.model.EnvioEmail;
 import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.models.enums.EnvioEmailAssunto;
-import br.com.educanjos.service.EmailService;
+import br.com.educanjos.infra.mail.service.EmailService;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

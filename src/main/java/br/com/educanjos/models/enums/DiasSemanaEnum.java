@@ -2,7 +2,7 @@ package br.com.educanjos.models.enums;
 
 import org.springframework.http.HttpStatus;
 
-import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
+import br.com.educanjos.infra.handler.model.ExceptionEducanjosApi;
 
 public enum DiasSemanaEnum {
 

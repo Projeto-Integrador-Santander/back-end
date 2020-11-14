@@ -1,6 +1,6 @@
 package br.com.educanjos.utils;
 
-import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
+import br.com.educanjos.infra.handler.model.ExceptionEducanjosApi;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;

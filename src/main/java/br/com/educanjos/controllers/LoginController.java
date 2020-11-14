@@ -2,9 +2,9 @@ package br.com.educanjos.controllers;
 
 import br.com.educanjos.facades.LoginFacade;
 import br.com.educanjos.models.dto.EmailDTO;
-import br.com.educanjos.models.dto.EnvioEmail;
+import br.com.educanjos.infra.mail.model.EnvioEmail;
 import br.com.educanjos.models.entities.Login;
-import br.com.educanjos.service.EmailService;
+import br.com.educanjos.infra.mail.service.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

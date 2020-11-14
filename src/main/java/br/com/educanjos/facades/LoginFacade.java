@@ -1,28 +1,20 @@
 package br.com.educanjos.facades;
 
 import br.com.educanjos.models.dto.EmailDTO;
-import br.com.educanjos.models.dto.EnvioEmail;
+import br.com.educanjos.infra.mail.model.EnvioEmail;
 import br.com.educanjos.models.entities.Login;
-import br.com.educanjos.models.entities.Perfil;
 import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.models.entities.RequisicaoSenha;
 import br.com.educanjos.models.enums.EnvioEmailAssunto;
 import br.com.educanjos.models.enums.Status;
 import br.com.educanjos.repositories.LoginRepository;
 
-import br.com.educanjos.repositories.RequisicaoSenhaRepository;
-import br.com.educanjos.service.EmailService;
-import br.com.educanjos.service.RequisicaoService;
-import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
+import br.com.educanjos.infra.mail.service.RequisicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Email;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 
 import static br.com.educanjos.utils.ValidationsUtil.*;
 

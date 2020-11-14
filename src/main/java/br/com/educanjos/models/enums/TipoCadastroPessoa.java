@@ -1,6 +1,6 @@
 package br.com.educanjos.models.enums;
 
-import br.com.educanjos.utils.exception.ExceptionEducanjosApi;
+import br.com.educanjos.infra.handler.model.ExceptionEducanjosApi;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 

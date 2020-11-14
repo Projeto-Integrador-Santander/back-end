@@ -1,6 +1,6 @@
-package br.com.educanjos.utils.exception;
+package br.com.educanjos.infra.handler.model;
 
-import br.com.educanjos.utils.config.MessageConfig;
+import br.com.educanjos.infra.handler.MessageConfig;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

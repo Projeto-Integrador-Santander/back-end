@@ -1,4 +1,4 @@
-package br.com.educanjos.service;
+package br.com.educanjos.infra.mail.service;
 
 import br.com.educanjos.models.entities.RequisicaoSenha;
 import br.com.educanjos.models.enums.Status;

@@ -1,4 +1,4 @@
-package br.com.educanjos.models.dto;
+package br.com.educanjos.infra.mail.model;
 
 import br.com.educanjos.models.entities.Pessoa;
 import br.com.educanjos.models.entities.RequisicaoSenha;

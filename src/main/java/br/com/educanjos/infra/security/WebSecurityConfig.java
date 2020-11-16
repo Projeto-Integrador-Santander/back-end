@@ -20,9 +20,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
     protected void configure(HttpSecurity http) throws java.lang.Exception {
-				
+
 		http.csrf().disable().authorizeRequests()
         
+		.antMatchers(HttpMethod.POST, "/login/v1/esqueci-senha").permitAll()
+		.antMatchers(HttpMethod.POST, "/login/v1/atualiza-senha").permitAll()
         .antMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "USER")
         .antMatchers(HttpMethod.POST).hasAnyRole("ADMIN", "USER")
         .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
@@ -33,7 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .httpBasic().and()
         .formLogin().permitAll().and()
         .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-
         
     }
 	

@@ -21,7 +21,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
     protected void configure(HttpSecurity http) throws java.lang.Exception {
 
-		http.csrf().disable().authorizeRequests()
+		http.csrf().disable().cors().disable()
+		.authorizeRequests()
         
 		.antMatchers(HttpMethod.POST, "/login/v1/esqueci-senha").permitAll()
 		.antMatchers(HttpMethod.POST, "/login/v1/atualiza-senha").permitAll()

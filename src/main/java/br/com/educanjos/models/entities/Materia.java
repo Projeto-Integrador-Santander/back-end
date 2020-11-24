@@ -27,4 +27,7 @@ public class Materia {
         this.id = id;
     }
 
+    public Long getId() {
+        return this.id;
+    }
 }

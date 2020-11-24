@@ -49,4 +49,11 @@ public class RequisicaoSenha {
         this.dataExpiracao = requisicaoSenha.dataExpiracao;
     }
 
+    public String getToken() {
+        return this.token;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return this.lastUpdate;
+    }
 }

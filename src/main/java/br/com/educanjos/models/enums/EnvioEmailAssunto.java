@@ -22,4 +22,12 @@ public enum EnvioEmailAssunto {
     EnvioEmailAssunto(String descricao) {
         this.descricao = descricao;
     }
+
+    public String getDescricao() {
+        return this.descricao;
+    }
+
+    public String getTextoDefault() {
+        return this.textoDefault;
+    }
 }

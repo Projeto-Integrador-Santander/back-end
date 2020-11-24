@@ -9,4 +9,15 @@ public class EmailDTO {
     private String senha;
     private String token;
 
+    public String getSenha() {
+        return this.senha;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getToken() {
+        return this.token;
+    }
 }

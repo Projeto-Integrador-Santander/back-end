@@ -48,4 +48,20 @@ public class EnvioEmail {
         }
         return textoDefault;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getAssunto() {
+        return this.assunto;
+    }
+
+    public String getCorpoEmail() {
+        return this.corpoEmail;
+    }
+
+    public String getSaudacao() {
+        return this.saudacao;
+    }
 }

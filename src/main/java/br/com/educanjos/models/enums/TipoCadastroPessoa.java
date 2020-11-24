@@ -24,4 +24,8 @@ public enum TipoCadastroPessoa {
         }
         throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, "VALIDATION-6", "tipo", TipoCadastroPessoa.values());
     }
+
+    public String getDescricao() {
+        return this.descricao;
+    }
 }

@@ -46,4 +46,53 @@ public class Perfil {
     public Perfil(Long id){
         this.id = id;
     }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getSobre() {
+        return this.sobre;
+    }
+
+    public String getSobrenome() {
+        return this.sobrenome;
+    }
+
+    public String getTelefone() {
+        return this.telefone;
+    }
+
+    public String getUrlFoto() {
+        return this.urlFoto;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setSobre(String sobre) {
+        this.sobre = sobre;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
 }

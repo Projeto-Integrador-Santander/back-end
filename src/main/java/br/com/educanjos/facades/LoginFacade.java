@@ -61,11 +61,11 @@ public class LoginFacade {
 
     public EnvioEmail atualizaSenha(EmailDTO emailDTO) {
         RequisicaoSenha requisicaoSenha = requisicaoService.buscaPorToken(emailDTO.getToken());
-        Login login = getLoginByEmail(emailDTO.getEmail());
+        Login login = getLoginByEmail(requisicaoSenha.getEmail());
         login.setSenha(emailDTO.getSenha());
         repository.save(login);
         requisicaoService.atualizaStatusRequisicao(requisicaoSenha, Status.INATIVO);
-        return new EnvioEmail(EnvioEmailAssunto.RECUPERACAO_SENHA, pessoaFacade.getPessoaByIdLogin(login.getId()), null);
+        return new EnvioEmail(EnvioEmailAssunto.SENHA_ALTERADA, pessoaFacade.getPessoaByIdLogin(login.getId()), requisicaoSenha);
     }
 
     public void findByEmail(String email) {
@@ -79,6 +79,4 @@ public class LoginFacade {
         return new EnvioEmail(EnvioEmailAssunto.RECUPERACAO_SENHA, pessoa, requisicaoService.geraRequisicaoSenha(email.getEmail()));
     }
     
-
-
 }

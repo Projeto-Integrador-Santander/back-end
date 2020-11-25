@@ -7,6 +7,9 @@ import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Getter
 @NoArgsConstructor
 public class EnvioEmail {
@@ -43,25 +46,11 @@ public class EnvioEmail {
             }else {
                 textoDefault = textoDefault.concat(EnvioEmailAssunto.CADASTRO_EFETUADO_PROFESSOR.getDescricao());
             }
-        }else if (envioEmailAssunto.equals(EnvioEmailAssunto.CADASTRO_EFETUADO)){
-            textoDefault = String.format(envioEmailAssunto.getTextoDefault(), requisicaoSenha.getLastUpdate());
+        }else if (envioEmailAssunto.equals(EnvioEmailAssunto.SENHA_ALTERADA)){
+            String dataHoraFormatada = requisicaoSenha.getLastUpdate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            textoDefault = String.format(envioEmailAssunto.getTextoDefault(), dataHoraFormatada);
         }
         return textoDefault;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getAssunto() {
-        return this.assunto;
-    }
-
-    public String getCorpoEmail() {
-        return this.corpoEmail;
-    }
-
-    public String getSaudacao() {
-        return this.saudacao;
-    }
 }

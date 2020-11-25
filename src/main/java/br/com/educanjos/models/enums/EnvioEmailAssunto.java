@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum EnvioEmailAssunto {
-    RECUPERACAO_SENHA("Recuperação de senha - Educanjos", "Atualize sua senha em http://localhost:4200/%s/esqueci-minha-senha/%s . Observação: sua solicitação expira em 30 minutos, após este período será necessário abrir uma nova solicitação."),
+    RECUPERACAO_SENHA("Recuperação de senha - Educanjos", "Atualize sua senha em http://localhost:4200/%s/esqueci-minha-senha/%s Observação: sua solicitação expira em 30 minutos, após este período será necessário abrir uma nova solicitação."),
     CADASTRO_EFETUADO("Cadastro efetuado com sucesso - Educanjos","Seja bem-vindo(a) ao educanjos. "),
     CADASTRO_EFETUADO_PROFESSOR("Esperamos que sua experiência seja positiva e que consiga passar o máximo de conhecimento possível aos nossos alunos."),
     CADASTRO_EFETUADO_ALUNO("Esperamos que sua experiência seja positiva e que sua aprendizagem seja contínua."),
@@ -23,11 +23,4 @@ public enum EnvioEmailAssunto {
         this.descricao = descricao;
     }
 
-    public String getDescricao() {
-        return this.descricao;
-    }
-
-    public String getTextoDefault() {
-        return this.textoDefault;
-    }
 }

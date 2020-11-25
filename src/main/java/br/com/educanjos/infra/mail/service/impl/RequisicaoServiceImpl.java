@@ -50,7 +50,7 @@ public class RequisicaoServiceImpl implements RequisicaoService {
     }
 
     private void verificaTokenValido(RequisicaoSenha requisicaoSenha){
-        Boolean isBefore = LocalDateTime.now().isBefore(requisicaoSenha.getDataExpiracao());
+        Boolean isBefore = requisicaoSenha.getDataExpiracao().isBefore(LocalDateTime.now());
         verificaIsInactiveOuCancelado(requisicaoSenha.getStatus().toString(), "VALIDACAO-9");
         if (isBefore){
             atualizaStatusRequisicao(requisicaoSenha, Status.CANCELADO);

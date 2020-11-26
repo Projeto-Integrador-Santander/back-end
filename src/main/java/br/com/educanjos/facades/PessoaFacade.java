@@ -2,6 +2,7 @@ package br.com.educanjos.facades;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import br.com.educanjos.infra.handler.model.ExceptionEducanjosApi;
@@ -32,6 +33,10 @@ public class PessoaFacade {
         perfilFacade.findByCPF(pessoa.getPerfil().getCpf());
         loginFacade.findByEmail(pessoa.getLogin().getEmail());
         pessoa.setTipoCadastro(TipoCadastroPessoa.get(tipo));
+        if (tipo.equals("ALUNO")){
+            pessoa.setMaterias(pessoa.getMaterias().stream()
+                    .filter(x -> x.getId() != 0).collect(Collectors.toList()));
+        }
 		return repository.save(pessoa);
 	}
 	
@@ -47,7 +52,10 @@ public class PessoaFacade {
 		perfilBase.setSobrenome(perfil.getSobrenome());
 		perfilBase.setTelefone(perfil.getTelefone());
 		perfilBase.setUrlFoto(perfil.getUrlFoto());
-		pessoaBase.setMaterias(pessoa.getMaterias());
+		if (tipo.equals("ALUNO")){
+            pessoaBase.setMaterias(pessoa.getMaterias().stream()
+                    .filter(x -> x.getId() != 0).collect(Collectors.toList()));
+        }
 		Login login = pessoaBase.getLogin();
 		login.setSenha(pessoa.getLogin().getSenha());
 		

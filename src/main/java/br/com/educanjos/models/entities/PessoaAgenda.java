@@ -34,11 +34,4 @@ public class PessoaAgenda {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private LocalTime fim;
 
-    public Long getId() {
-    	return this.id;
-    }
-
-	public void setId(Long id) {
-    	this.id = id;
-	}
 }

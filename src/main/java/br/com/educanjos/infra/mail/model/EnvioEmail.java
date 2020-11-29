@@ -6,8 +6,6 @@ import br.com.educanjos.models.enums.EnvioEmailAssunto;
 import br.com.educanjos.models.enums.TipoCadastroPessoa;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Getter

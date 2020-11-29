@@ -50,7 +50,7 @@ public class AgendaFacade {
     public void atualizaAgenda(Long id, PessoaAgenda agenda) {
         PessoaAgenda entity = getAgendaById(id);
         agenda.setId(entity.getId());
-        repository.save(entity);
+        repository.save(agenda);
     }
 
     public void deleteById(Long id) {

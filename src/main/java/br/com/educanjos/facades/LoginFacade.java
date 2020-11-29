@@ -8,14 +8,11 @@ import br.com.educanjos.models.entities.RequisicaoSenha;
 import br.com.educanjos.models.enums.EnvioEmailAssunto;
 import br.com.educanjos.models.enums.Status;
 import br.com.educanjos.repositories.LoginRepository;
-
 import br.com.educanjos.infra.mail.service.RequisicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
-
 import static br.com.educanjos.utils.ValidationsUtil.*;
 
 @Service

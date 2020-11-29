@@ -19,15 +19,15 @@ public class ValidationsUtil {
 
     public static void verificaIsEmpty(List<?> list) {
         if (Objects.isNull(list) || list.isEmpty())
-            throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, "VALIDACAO-2");
+            throw new ExceptionEducanjosApi(HttpStatus.NO_CONTENT, "VALIDACAO-2");
     }
 
     public static void verificaIsNull(Object object, @NonNull String codErro, String param) {
         if (Objects.isNull(object))
             if (Objects.isNull(param)) {
-                throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro);
+                throw new ExceptionEducanjosApi(HttpStatus.NOT_FOUND, codErro);
             } else {
-                throw new ExceptionEducanjosApi(HttpStatus.BAD_REQUEST, codErro, param);
+                throw new ExceptionEducanjosApi(HttpStatus.NOT_FOUND, codErro, param);
             }
     }
 

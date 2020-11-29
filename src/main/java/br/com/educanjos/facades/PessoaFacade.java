@@ -33,10 +33,7 @@ public class PessoaFacade {
         perfilFacade.findByCPF(pessoa.getPerfil().getCpf());
         loginFacade.findByEmail(pessoa.getLogin().getEmail());
         pessoa.setTipoCadastro(TipoCadastroPessoa.get(tipo));
-        if (tipo.equals("ALUNO")){
-            pessoa.setMaterias(pessoa.getMaterias().stream()
-                    .filter(x -> x.getId() != 0).collect(Collectors.toList()));
-        }
+        validaMateriasEntrada(tipo, pessoa, pessoa);
 		return repository.save(pessoa);
 	}
 	
@@ -52,10 +49,7 @@ public class PessoaFacade {
 		perfilBase.setSobrenome(perfil.getSobrenome());
 		perfilBase.setTelefone(perfil.getTelefone());
 		perfilBase.setUrlFoto(perfil.getUrlFoto());
-		if (tipo.equals("ALUNO")){
-            pessoaBase.setMaterias(pessoa.getMaterias().stream()
-                    .filter(x -> x.getId() != 0).collect(Collectors.toList()));
-        }
+        validaMateriasEntrada(tipo, pessoa, pessoaBase);
 		Login login = pessoaBase.getLogin();
 		login.setSenha(pessoa.getLogin().getSenha());
 		
@@ -91,12 +85,10 @@ public class PessoaFacade {
         repository.deleteById(id);
     }
 
-    public void verificaExistencia(Long id){
-	    Optional<Pessoa> pessoa = repository.findById(id);
-	    verificaIsPresente(pessoa, id.toString() + " em professor");
-	    if (!TipoCadastroPessoa.PROFESSOR.equals(pessoa.get().getTipoCadastro())){
-            throw new ExceptionEducanjosApi(HttpStatus.CONFLICT, "VALIDACAO-4");
+    private void validaMateriasEntrada(String tipo, Pessoa pessoa, Pessoa pessoaBase){
+        if (tipo.equals("ALUNO")){
+            pessoaBase.setMaterias(pessoa.getMaterias().stream()
+                    .filter(x -> x.getId() != 0).collect(Collectors.toList()));
         }
     }
-
 }

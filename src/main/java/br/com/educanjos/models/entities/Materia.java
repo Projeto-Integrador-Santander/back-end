@@ -1,6 +1,5 @@
 package br.com.educanjos.models.entities;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,11 +22,4 @@ public class Materia {
 
     private String descricao;
 
-    public Materia(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
 }

@@ -33,9 +33,4 @@ public class MateriaFacade {
         Materia entity = getMateriaById(id);
         repository.deleteById(entity.getId());
     }
-
-    public void verificaExistencia(Long id){
-        Optional<Materia> materia = repository.findById(id);
-        verificaIsPresente(materia, id.toString() + " em materia");
-    }
 }
